@@ -5,7 +5,7 @@
 | Nombre del archivo en `data/raw/` | DadosV3.csv |
 | Fuente (institución) | Kaggle, dataset publicado por Saurabh Shahane. Los datos provienen de un centro deportivo de Lisboa (Portugal) |
 | URL exacta de descarga | https://www.kaggle.com/datasets/saurabhshahane/sport-services-dataset |
-| Fecha de descarga | [COMPLETAR: AAAA-MM-DD] |
+| Fecha de descarga | [2026-11-01] |
 | Licencia o condiciones de uso | Open Data Commons Database Contents License (DbCL) v1.0, según la ficha del dataset en Kaggle |
 | ¿Se permite redistribuir? | Sí. El archivo pesa 4,3 MB, menos del límite de 100 MB de GitHub, por eso se incluye en el repositorio |
 | Filas × columnas (raw) | 14 942 × 47 |
