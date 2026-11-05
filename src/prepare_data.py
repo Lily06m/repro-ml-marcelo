@@ -26,7 +26,7 @@ def main() -> None:
     # Sin limpieza adicional: el EDA del grupo no halló faltantes y se conservaron los atípicos.
     # --------------------------------------------------------------
     PROCESSED.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(PROCESSED, index=False)
+    df.to_csv(PROCESSED, index=False, lineterminator="\n")
     print(f"raw:       {n0} filas | md5 {md5(RAW)}")
     print(f"processed: {len(df)} filas | md5 {md5(PROCESSED)}")
 
