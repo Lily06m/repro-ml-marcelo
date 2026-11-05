@@ -33,4 +33,5 @@ El archivo usa punto y coma (`;`) como separador, por eso `src/prepare_data.py` 
 2. Se eliminaron filas duplicadas (no había ninguna: se mantienen las 14 942 filas).
 3. No se definieron códigos de faltantes (`CODIGOS_FALTANTES` está vacío), por lo que este paso no cambia los datos.
 4. Se eliminaron las filas sin valor en la variable objetivo (no había ninguna).
-5. Sin limpieza propia adicional: el EDA del grupo no encontró valores faltantes y se conservaron los valores atípicos porque corresponden a socios reales.
+5. El archivo processed se guarda con salto de línea `\n` (`lineterminator="\n"`) para que su MD5 sea el mismo en cualquier sistema operativo.
+6. Sin limpieza propia adicional: el EDA del grupo no encontró valores faltantes y se conservaron los valores atípicos porque corresponden a socios reales.
