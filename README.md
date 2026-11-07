@@ -1,12 +1,12 @@
-# Pipeline de ML reproducible · ActivaFit (predicción de abandono en gimnasios)
+# Pipeline de ML reproducible - ActivaFit (predicción de abandono en gimnasios)
 
-Machine Learning I · Proyecto Integrador · Entregable individual
-Alumna: Lilian Marcelo Vizcarra · Grupo: 1 · Algoritmo asignado: KNN (K vecinos más cercanos)
+Machine Learning I - Proyecto Integrador
+Alumna: Lilian Marcelo Vizcarra - Grupo: 1 - Algoritmo asignado: KNN (K vecinos más cercanos)
 
 **Resumen:** El modelo predice si un socio de un centro deportivo abandonará el servicio (`Dropout` = 1) o no (`Dropout` = 0). Se usa el dataset Sport Services Dataset de Kaggle (archivo `DadosV3.csv`, 14 942 filas y 47 columnas), que corresponde a un centro deportivo de Lisboa (Portugal). Con él se entrena un KNN con K = 5 sobre 8 variables (7 numéricas y 1 categórica) y se compara contra un modelo de referencia (baseline).
 
 ## Cómo reproducir
-Probado con **Python 3.13.2** en windows.
+Probado con **Python 3.13.2** en Windows 11.
 
 macOS / Linux:
 ```bash
@@ -19,7 +19,7 @@ PYTHONHASHSEED=0 python -m src.run_seeds
 ```
 Windows (PowerShell):
 ```powershell
-git clone [COMPLETAR URL DEL REPOSITORIO] repro; cd repro
+git clone [https://github.com/Lily06m/repro-ml-marcelo.git] repro; cd repro
 python -m venv .venv; .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 $env:PYTHONHASHSEED=0
@@ -65,7 +65,7 @@ Ver `data/MANIFIESTO.md`.
 ## Qué lo hace reproducible
 | Requisito | Cómo se cumple |
 |---|---|
-| ≥ 6 commits | El repositorio tiene [6] commits hechos a lo largo de la semana, uno por cada parte del entregable. |
+| ≥ 6 commits | El repositorio tiene [11] commits hechos a lo largo de la semana, uno por cada parte del entregable. |
 | Sin fuga de datos | El imputador, el escalador y el codificador están dentro del `Pipeline`, por lo que en cada fold se ajustan solo con los datos de entrenamiento. El 20 % de prueba se aparta con una partición fija y no se usa. |
 | Aleatoriedad fija | Se fija `PYTHONHASHSEED=0`, la semilla de Python y de NumPy, la semilla de la partición (42) y la de la validación cruzada (`random_state=seed`). |
 | 5 semillas en MLflow, media ± DE | `src.run_seeds` registra 10 corridas (baseline y KNN con las semillas 0, 1, 2, 3 y 42) y reporta la media ± DE muestral (ddof=1) entre semillas. |
@@ -73,10 +73,10 @@ Ver `data/MANIFIESTO.md`.
 | Entorno exacto | `requirements.txt` fija las versiones exactas de numpy, pandas, scikit-learn y mlflow. |
 
 ## Prueba del extraño
-Probada por [COMPLETAR nombre y grupo, de otro grupo]. Enlace al Issue: [COMPLETAR]. Resultado: [COMPLETAR: si logró reproducir los números y qué dificultades tuvo].
+Probada por Arturo Talaverano, del grupo 1, en Windonws. Enlace al Issue: https://github.com/Lily06m/repro-ml-marcelo/issues/1. Resultado: reprodujo los mismos números (MD5 de processed beefd118..., accuracy 0.83578 ± 0.01182 con la semilla 42), sin dificultades.
 
 ## Limitaciones
-Primero, el dataset es de un centro deportivo de Lisboa y sus valores monetarios están en euros, por lo que no representa a un gimnasio peruano. Segundo, el 80.1 % de los socios abandona, así que las clases están desbalanceadas y la accuracy sola es engañosa: el baseline logra 0.8010 sin aprender nada. Por eso se reporta también recall_macro. Tercero, variables como `LifetimeValue` o `NumberOfRenewals` se acumulan con el tiempo y podrían contener información posterior al abandono. Cuarto, K = 5 es fijo y no se ajustó. Quinto, el 20 % de prueba no se usó, por lo que no hay estimación final del desempeño.
+Primero, el dataset es de un centro deportivo de Lisboa y sus valores monetarios están en euros, pero nuestro grupo lo adapto en caso peruano. Segundo, el 80.1 % de los socios abandona, así que las clases están desbalanceadas y la accuracy sola es engañosa: el baseline logra 0.8010 sin aprender nada. Por eso se reporta también recall_macro. Tercero, variables como `LifetimeValue` o `NumberOfRenewals` se acumulan con el tiempo y podrían contener información posterior al abandono. Cuarto, K = 5 es fijo y no se ajustó. Quinto, el 20 % de prueba no se usó, por lo que no hay estimación final del desempeño.
 
 ## Respuestas
 1. En este trabajo el imputador, el escalador y el codificador están dentro del Pipeline. Así, en cada fold se ajustan solo con los datos de entrenamiento y no con los de validación. Si escalara todo el dataset antes de validar, la media y la desviación incluirían datos del fold de validación y el resultado saldría más optimista. En KNN esto importa mucho porque las distancias dependen de la escala de las variables.
