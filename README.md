@@ -10,7 +10,7 @@ Probado con **Python 3.13.2** en Windows 11.
 
 macOS / Linux:
 ```bash
-git clone [COMPLETAR URL DEL REPOSITORIO] repro && cd repro
+git clone [https://github.com/Lily06m/repro-ml-marcelo.git] repro && cd repro
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 PYTHONHASHSEED=0 python -m src.prepare_data
